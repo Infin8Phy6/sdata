@@ -2,12 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require('cors');
+require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Use PORT from .env or default to 3000
 
-// MongoDB connection URI
-const uri = "mongodb+srv://angelesedgardo17:dNjeAKovMY0psOmU@depedinfostorage.mddyf.mongodb.net/?retryWrites=true&w=majority&appName=depedinfostorage";
+// MongoDB connection URI from environment variable
+const uri = process.env.MONGODB_URI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
